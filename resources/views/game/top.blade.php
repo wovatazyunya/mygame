@@ -39,7 +39,11 @@
   <h2>恋愛リズムアクションバトルゲーム</h2>
   <img id="torizukiToHitozuki" src="../images/torizukitohitozuki.jpeg" alt="鳥好きと人好き"><br>
   <br>
+  <p>現在のトータルポイント:{{ Auth::user()->record->total_point }}
+  </p>
+  <p>現在の所有ポイント:{{ Auth::user()->record->current_point }}</p>
   <div class="bottun"><a href="{{ url('/game/tutorial') }}">スタート</a></div>
+  <div class="bottun"><a href="{{ url('/game/shop')}}">ショップに行く</a></div>
 </body>
 
 </html>

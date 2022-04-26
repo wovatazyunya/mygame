@@ -66,7 +66,11 @@
   <p class="difficulty">ゴクラクチョウ ---> やさしい</p>
   <p class="difficulty">クジャク ---> ふつう</p>
   <p class="difficulty">カタカケフウチョウ ---> ふつう</p>
+  <p class="difficulty">マイコドリ---> ふつう</p>
+  <p class="difficulty">タンチョウ--->むずかしい</p>
   <p class="difficulty">隠しキャラO.Jカラス ---> むずかしい</p>
+  <input type="hidden" id="maiko" value="{{Auth::user()->record->ex_char1}}">
+  <input type="hidden" id="tancyou" value="{{Auth::user()->record->ex_char2}}">
   <main>
     <div class="container">
       <section>
@@ -78,8 +82,8 @@
             <li><img src="../images/gokuraku.png" class="thumb" data-image="../images/gokuraku.png"></li>
             <li><img src="../images/kujaku.png" class="thumb" data-image="../images/kujaku.png"></li>
             <li><img src="../images/katakakehuutyou.png" class="thumb" data-image="../images/katakakehuutyou.png"></li>
-            <li><img src="../images/non.png" class="thumb" data-image="../images/nouse.png"></li>
-            <li><img src="../images/non.png" class="thumb" data-image="../images/nouse.png"></li>
+            <li><img src="../images/maikodori.png" class="thumb" data-image="../images/maikodori.png"></li>
+            <li><img src="../images/tancyou.png" class="thumb" data-image="../images/tancyou.png"></li>
             <li><img src="../images/non.png" class="thumb" data-image="../images/nouse.png"></li>
             <li><img src="../images/non.png" class="thumb" data-image="../images/nouse.png"></li>
             <li><img src="../images/joCursor.png" class="thumb" data-image="../images/oj.png"></li>
@@ -95,10 +99,24 @@
   <div id="choice">
     <p id="sample" class="bottun">プレイヤーを決定する</p>
   </div>
+
   <script>
     'use strict';
-
-    const gazo = ['../images/gokuraku.png', '../images/kujaku.png', '../images/katakakehuutyou.png', '../images/nouse.png', '../images/nouse.png', '../images/nouse.png', '../images/nouse.png', '../images/oj.png', '../images/nouse.png', '../images/nouse.png'];
+    const maiko = document.getElementById('maiko').value;
+    console.log(maiko);
+    const tancyou = document.getElementById('tancyou').value;
+    console.log(tancyou);
+    const gazo = ['../images/gokuraku.png',
+      '../images/kujaku.png',
+      '../images/katakakehuutyou.png',
+      '../images/maikodori.png',
+      '../images/tancyou.png',
+      '../images/nouse.png',
+      '../images/nouse.png',
+      '../images/oj.png',
+      '../images/nouse.png',
+      '../images/nouse.png'
+    ];
     const thumbs = document.querySelectorAll('.thumb');
 
     for (let i = 0; i < thumbs.length; i += 1) {
@@ -109,8 +127,8 @@
           thumbs[0].src = `../images/gokurakuCorsor.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -124,8 +142,8 @@
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujakuCorsor.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -140,8 +158,8 @@
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyouCousor.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -156,8 +174,8 @@
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/nonCursor.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodoriCursor.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -165,15 +183,19 @@
           thumbs[9].src = `../images/non.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              if (maiko == 1) {
+                location.href = "{{url('game/playMaiko')}}";
+              } else {
+                location.href = "{{url('game/cantUse')}}";
+              }
             })
         } else if (i === 4) {
           document.getElementById('bigimg').src = gazo[i];
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/nonCursor.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyouCursor.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -181,15 +203,19 @@
           thumbs[9].src = `../images/non.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              if (tancyou == 1) {
+                location.href = "{{url('game/playTancyou')}}";
+              } else {
+                location.href = "{{url('game/cantUse')}}";
+              }
             })
         } else if (i === 5) {
           document.getElementById('bigimg').src = gazo[i];
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/nonCursor.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -197,15 +223,15 @@
           thumbs[9].src = `../images/non.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              location.href = "{{url('game/noUse')}}";
             })
         } else if (i === 6) {
           document.getElementById('bigimg').src = gazo[i];
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/nonCursor.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -213,15 +239,15 @@
           thumbs[9].src = `../images/non.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              location.href = "{{url('game/noUse')}}";
             })
         } else if (i === 7) {
           document.getElementById('bigimg').src = gazo[i];
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joRedCursor.png`;
@@ -236,8 +262,8 @@
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -245,7 +271,7 @@
           thumbs[9].src = `../images/non.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              location.href = "{{url('game/noUse')}}";
 
             })
         } else if (i === 9) {
@@ -253,8 +279,8 @@
           thumbs[0].src = `../images/gokuraku.png`;
           thumbs[1].src = `../images/kujaku.png`;
           thumbs[2].src = `../images/katakakehuutyou.png`;
-          thumbs[3].src = `../images/non.png`;
-          thumbs[4].src = `../images/non.png`;
+          thumbs[3].src = `../images/maikodori.png`;
+          thumbs[4].src = `../images/tancyou.png`;
           thumbs[5].src = `../images/non.png`;
           thumbs[6].src = `../images/non.png`;
           thumbs[7].src = `../images/joCursor.png`;
@@ -262,7 +288,7 @@
           thumbs[9].src = `../images/nonCursor.png`;
           document.getElementById('sample').addEventListener("click",
             function() {
-              location.href = "noUse.html";
+              location.href = "{{url('game/noUse')}}";
 
             })
         }

@@ -189,6 +189,7 @@
     twelveSec();
 
     window.setTimeout(function() {
+      sessionStorage.setItem('point', count);
       alert('結果を見ますか？');
       if (count < 4) {
         location.href = "{{url('game/loseKatakake')}}"
@@ -219,7 +220,7 @@
         katakakeImg.src = '../images/katakaehuutyouTurn.gif';
       },
       talk: function() {
-        mes.textContent = "たけがけにたてかけたか";
+        mes.textContent = "このたけがけにたけかけたのはたけたてかけたかったからたけたてかけた";
         setTimeout(function() {
           mes.textContent = '';
         }, 3000);

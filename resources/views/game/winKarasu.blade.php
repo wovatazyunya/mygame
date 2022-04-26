@@ -36,8 +36,20 @@
   <h1>ユーウィン</h1>
   <div class="image"><img id="mary" src="../images/mary.png" alt="メアリー"></div>
   <p>オーマイガー!!!</p>
-  <div class="bottun"><a href="{{url('game/ending')}}" alt="エンディング">エンディングへ</a></div>
-  <div class="bottun"><a href="{{url('game/top')}}" alt="topに戻る">topに戻る</a></div>
+  <!-- <div class="bottun"><a href="{{url('game/ending')}}" alt="エンディング">エンディングへ</a></div>
+  <div class="bottun"><a href="{{url('game/top')}}" alt="topに戻る">topに戻る</a></div> -->
+  <form action="{{action('User\GameController@addpoint')}}" method="POST" name="addpoint">
+    {{csrf_field()}}
+    <input type="hidden" name="point" id="point" value="0" />
+    <input type="button" value="ボタン" onclick="clickBtn5()" />
+  </form>
+  <script>
+    function clickBtn5() {
+      document.getElementById("point").value = sessionStorage.getItem('point');
+      document.addpoint.submit();
+      alert("ポイント加算します");
+    }
+  </script>
 </body>
 
 </html>

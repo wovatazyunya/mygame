@@ -189,6 +189,7 @@
     twelveSec();
 
     window.setTimeout(function() {
+      sessionStorage.setItem('point', count);
       alert('結果を見ますか？');
       if (count < 3) {
         location.href = "{{url('game/loseGokurakutyou')}}"

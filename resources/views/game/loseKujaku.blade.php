@@ -36,8 +36,20 @@
   <h1>ユールース</h1>
   <div class="image"><img id="kujakukuMesu" src="../images/kujakuMesu.png" alt="クジャクメス"></div>
   <p>課金して出直しなさい</p>
-  <div class="bottun"><a href="{{url ('/game/shop')}}" alt="課金する">ショップに行く</a></div>
-  <div class="bottun"><a href="{{url ('/game/top')}}" alt="topに戻る">topに戻る</a></div>
+  <!-- <div class="bottun"><a href="{{url ('/game/shop')}}" alt="課金する">ショップに行く</a></div> -->
+  <!-- <div class="bottun"><a href="{{url ('/game/top')}}" alt="topに戻る">topに戻る</a></div> -->
+  <form action="{{action('User\GameController@addpoint')}}" method="POST" name="addpoint">
+    {{csrf_field()}}
+    <input type="hidden" name="point" id="point" value="0" />
+    <input type="button" value="ボタン" onclick="clickBtn5()" />
+  </form>
+  <script>
+    function clickBtn5() {
+      document.getElementById("point").value =
+        sessionStorage.getItem('point');
+      document.addpoint.submit();
+    }
+  </script>
 </body>
 
 </html>
