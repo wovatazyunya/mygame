@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('game/noUse', 'User\GameController@noUse');
 
-    Route::get('game/cantUse', 'User\GAmeController@cantUse');
+    Route::get('game/cantUse', 'User\GameController@cantUse');
 
     Route::get('/game/playGokurakutyou', 'User\GameController@playGokurakutyou');
 
